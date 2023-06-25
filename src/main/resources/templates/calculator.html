@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuong Calculator</title>
+</head>
+<body>
+    <h2>Calculator</h2>
+
+    <form action="/calculator" method="GET">
+        <label for="num1">Number 1:</label>
+        <input type="number" name="num1" id="num1" required>
+        <br><br>
+
+        <label for="num2">Number 2:</label>
+        <input type="number" name="num2" id="num2" required>
+        <br><br>
+
+        <label for="operator">Operator:</label>
+        <select name="operator" id="operator">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    <br>
+
+    <div th:if="${error}" style="color: red" th:text="${error}"></div>
+
+    <div th:if="${result}" th:text="'Result: ' + ${result}"></div>
+</body>
+</html>
