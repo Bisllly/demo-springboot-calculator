@@ -26,13 +26,13 @@
 
     <div class="button-container">
         <div class="row">
-            <div class="col"></div>
+            <div class="col-3"></div>
 
             <div class="col-6">
                 <div class="text-center">
                     <div class="row mt-4">
                         <div class="col">
-                            <button class="btn btn-danger custom-btn" data-value="=" onclick="appendInput()">=</button>
+                            <button class="btn btn-danger custom-btn" data-value="=" onclick="calculate()">=</button>
                         </div>
                         <div class="col">
                             <button class="btn btn-danger custom-btn"                onclick="clearInput()">C</button>
@@ -85,18 +85,44 @@
                     </div>
                 </div>
             </div>
-            <div class="col"></div>
+
+            <div class="col-3">
+                <div class="row mt-4">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" + " onclick="appendInput()">+</button>
+                    </col-3>
+                </div>
+                <div class="row">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" - " onclick="appendInput()">-</button>
+                    </col-3>
+                </div>
+                <div class="row">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" * " onclick="appendInput()">*</button>
+                    </col-3>
+                </div>
+                <div class="row">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" / " onclick="appendInput()">/</button>
+                    </col-3>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
+    var inputField = document.getElementById('inputField');
+
     function appendInput() {
-        var inputField = document.getElementById('inputField');
         var button = event.target;
         var value = button.getAttribute("data-value");
         var currentValue = inputField.value;
         inputField.value = currentValue + value;
+    }
+    function clearInput() {
+        inputField.value = "";
     }
 </script>
 </body>
