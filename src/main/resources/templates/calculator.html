@@ -21,7 +21,9 @@
 
 <div class="container">
     <div class="input-container">
-        <input class="mt-4" type="text" id="inputField" th:value="${inputValue}" readonly>
+        <form th:action="@{/calculate}" method="post" id="calculationForm">
+            <input class="mt-4" type="text" id="inputField" name="inputValue" th:value="${inputValue}" readonly>
+        </form>
     </div>
 
     <div class="button-container">
@@ -32,7 +34,9 @@
                 <div class="text-center">
                     <div class="row mt-4">
                         <div class="col">
-                            <button class="btn btn-danger custom-btn" data-value="=" onclick="calculate()">=</button>
+<!--                            <form th:action="@{/calculate}" method="post">-->
+                            <button class="btn btn-danger custom-btn" type="submit" form="calculationForm" onclick="submitForm()">=</button>
+<!--                            </form>-->
                         </div>
                         <div class="col">
                             <button class="btn btn-danger custom-btn"                onclick="clearInput()">C</button>
@@ -124,6 +128,14 @@
     function clearInput() {
         inputField.value = "";
     }
+    function deleteInput() {
+        var currentValue = inputField.value;
+        inputField.value = currentValue.slice(0, -1);
+    }
+    function submitForm() {
+        document.getElementById('calculationForm').submit();
+    }
 </script>
+
 </body>
 </html>
