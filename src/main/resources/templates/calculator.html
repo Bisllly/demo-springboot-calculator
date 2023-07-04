@@ -1,37 +1,141 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Cuong Calculator</title>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
-    <h2>Calculator</h2>
 
-    <form action="/calculator" method="GET">
-        <label for="num1">Number 1:</label>
-        <input type="number" name="num1" id="num1" required>
-        <br><br>
+<style>
+    .custom-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .input-container {
+        height: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
 
-        <label for="num2">Number 2:</label>
-        <input type="number" name="num2" id="num2" required>
-        <br><br>
+<div class="container">
+    <div class="input-container">
+        <form th:action="@{/calculate}" method="post" id="calculationForm">
+            <input class="mt-4" type="text" id="inputField" name="inputValue" th:value="${inputValue}" readonly>
+        </form>
+    </div>
 
-        <label for="operator">Operator:</label>
-        <select name="operator" id="operator">
-            <option value="add">+</option>
-            <option value="subtract">-</option>
-            <option value="multiply">*</option>
-            <option value="divide">/</option>
-        </select>
-        <br><br>
+    <div class="button-container">
+        <div class="row">
+            <div class="col-3"></div>
 
-        <input type="submit" value="Calculate">
-    </form>
+            <div class="col-6">
+                <div class="text-center">
+                    <div class="row mt-4">
+                        <div class="col">
+<!--                            <form th:action="@{/calculate}" method="post">-->
+                            <button class="btn btn-danger custom-btn" type="submit" form="calculationForm" onclick="submitForm()">=</button>
+<!--                            </form>-->
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-danger custom-btn"                onclick="clearInput()">C</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-danger custom-btn" data-value="=" onclick="deleteInput()">del</button>
+                        </div>
+                    </div>
 
-    <br>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="7" onclick="appendInput()">7</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="8" onclick="appendInput()">8</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="9" onclick="appendInput()">9</button>
+                        </div>
+                    </div>
 
-    <div th:if="${error}" style="color: red" th:text="${error}"></div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="4" onclick="appendInput()">4</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="5" onclick="appendInput()">5</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="6" onclick="appendInput()">6</button>
+                        </div>
+                    </div>
 
-    <div th:if="${result}" th:text="'Result: ' + ${result}"></div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="1" onclick="appendInput()">1</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="2" onclick="appendInput()">2</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary custom-btn" data-value="3" onclick="appendInput()">3</button>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <button class="btn btn-primary custom-btn" data-value="0" onclick="appendInput()">0</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="row mt-4">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" + " onclick="appendInput()">+</button>
+                    </col-3>
+                </div>
+                <div class="row">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" - " onclick="appendInput()">-</button>
+                    </col-3>
+                </div>
+                <div class="row">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" * " onclick="appendInput()">*</button>
+                    </col-3>
+                </div>
+                <div class="row">
+                    <col-3>
+                        <button class="btn btn-danger custom-btn" data-value=" / " onclick="appendInput()">/</button>
+                    </col-3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var inputField = document.getElementById('inputField');
+
+    function appendInput() {
+        var button = event.target;
+        var value = button.getAttribute("data-value");
+        var currentValue = inputField.value;
+        inputField.value = currentValue + value;
+    }
+    function clearInput() {
+        inputField.value = "";
+    }
+    function deleteInput() {
+        var currentValue = inputField.value;
+        inputField.value = currentValue.slice(0, -1);
+    }
+    function submitForm() {
+        document.getElementById('calculationForm').submit();
+    }
+</script>
+
 </body>
 </html>
