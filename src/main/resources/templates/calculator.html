@@ -3,23 +3,10 @@
 <head>
     <title>Calculator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-
-<style>
-    .custom-btn {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    .input-container {
-        height: 10vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-
-<div class="container">
+    <div class="container">
     <div class="input-container">
         <form th:action="@{/calculate}" method="post" id="calculationForm">
             <input class="mt-4" type="text" id="inputField" name="inputValue" th:value="${inputValue}" readonly>
@@ -116,26 +103,6 @@
     </div>
 </div>
 
-<script>
-    var inputField = document.getElementById('inputField');
-
-    function appendInput() {
-        var button = event.target;
-        var value = button.getAttribute("data-value");
-        var currentValue = inputField.value;
-        inputField.value = currentValue + value;
-    }
-    function clearInput() {
-        inputField.value = "";
-    }
-    function deleteInput() {
-        var currentValue = inputField.value;
-        inputField.value = currentValue.slice(0, -1);
-    }
-    function submitForm() {
-        document.getElementById('calculationForm').submit();
-    }
-</script>
-
+    <script th:src="@{/js/script.js}"></script>
 </body>
 </html>
