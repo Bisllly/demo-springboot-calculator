@@ -1,0 +1,10 @@
+.custom-btn {
+        width: 100%;
+        margin-bottom: 10px;
+}
+.input-container {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
