@@ -104,7 +104,7 @@
 <div class="container mt-4">
     <h4>History:</h4>
     <ul>
-        <li th:each="entry : ${history}" th:text="${entry}"></li>
+        <!--<li th:each="entry : ${history}" th:text="${entry}"></li>-->
     </ul>
     <form th:action="@{/clearHistory}" method="get">
         <button class="btn btn-danger" type="submit">Clear History</button>
