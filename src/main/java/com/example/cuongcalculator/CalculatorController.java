@@ -49,7 +49,7 @@ public class CalculatorController {
     @GetMapping("/clearHistory")
     public String clearHistory() {
         history.clear();
-        return "redirect:/";
+        return "clear-history";
     }
     @PostMapping("/getHistory")
     @ResponseBody
